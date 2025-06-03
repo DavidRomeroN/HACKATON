@@ -8,10 +8,13 @@ import { HttpClient } from '@angular/common/http';
   selector: 'app-blog',
   templateUrl: './blog.component.html',
   styleUrls: ['./blog.component.css'],
+
 })
 export class BlogComponent implements OnInit {
   blogsDetail: Blog[] = [];
   usuarioLogueado = false;
+  ubicacionHabilitada = false;
+
 
   constructor(
     public service: ServiceblogService,
@@ -25,10 +28,12 @@ export class BlogComponent implements OnInit {
     const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
     this.usuarioLogueado = !!usuario?.nombre;
 
-    if (this.service.Blogs.length === 0) {
-      this.service.getBlog().subscribe((d: any) => (this.service.Blogs = d));
-    }
+    // Verificamos si ya se tiene permiso de ubicación
+    navigator.permissions?.query({ name: 'geolocation' as PermissionName }).then(result => {
+      this.ubicacionHabilitada = result.state === 'granted';
+    });
   }
+
 
   loginClick() {
     this.router.navigate(['/login']);

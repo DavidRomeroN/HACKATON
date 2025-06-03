@@ -1,26 +1,45 @@
-<!-- Mostrar mensaje si no hay sesión -->
-<div *ngIf="!usuarioLogueado" class="text-center text-gray-600 mt-8">
-  Inicia sesión para ver tu asistente de vestimenta personalizado.
+<!-- Si no se puede acceder a la ubicación -->
+<div *ngIf="ubicacionNoPermitida" class="text-center text-gray-600 mt-8">
+  <p>🌍 Para ofrecerte recomendaciones personalizadas según tu clima, necesitamos tu ubicación.</p>
+  <button (click)="solicitarUbicacion()" class="btn btn-primary mt-3">
+    Activar recomendaciones
+  </button>
 </div>
 
-<!-- Mostrar asistente si hay sesión -->
-<div *ngIf="usuarioLogueado" class="asistente-container">
-  <h2 class="titulo">🧠 Tu asistente de vestimenta para la semana</h2>
+<!-- Si se obtuvo la ubicación correctamente -->
+<div *ngIf="mostrarRecomendaciones" class="recomendaciones-container">
+  <h2 class="titulo">👕 Recomendaciones para ti según el clima</h2>
 
-  <div class="grid">
-    <div class="card" *ngFor="let dia of recomendacion">
-      <p class="fecha">{{ dia.fecha | date:'EEEE, d MMMM':'':'es' }}</p>
-      <p class="clima">🌡️ {{ dia.temperatura }} °C – Clima {{ dia.clima }}</p>
-
-      <ng-container *ngIf="dia.producto; else sinProducto">
-        <img [src]="dia.producto.urlImagen" class="imagen" alt="prenda recomendada">
-        <p class="nombre">{{ dia.producto.nombre }}</p>
-        <p class="detalle">Ideal para el clima {{ dia.clima }}.</p>
-      </ng-container>
-
-      <ng-template #sinProducto>
-        <p class="detalle">Sin recomendación aún. Añadiremos más productos pronto 🛠️</p>
-      </ng-template>
+  <div class="tarjetas-grid">
+    <div class="tarjeta-producto" *ngFor="let producto of productos">
+      <img [src]="producto.urlImagen" class="producto-imagen" />
+      <h3 class="producto-nombre">{{ producto.nombre }}</h3>
+      <p><strong>Categoría:</strong> {{ producto.categoria }}</p>
+      <p><strong>Género:</strong> {{ producto.generoDestino }}</p>
+      <p><strong>Material:</strong> {{ producto.material }}</p>
+      <p><strong>Clima:</strong> {{ producto.climaApropiado }}</p>
     </div>
   </div>
 </div>
+
+<!-- Si la ubicación no fue permitida -->
+<div *ngIf="ubicacionNoPermitida && !mostrarRecomendaciones" class="text-center text-danger">
+  🔒 Necesitamos tu ubicación para mostrarte ropa recomendada.
+  <br />
+  <button class="btn btn-sm btn-primary mt-2" (click)="solicitarUbicacion()">Activar ubicación</button>
+</div>
+
+<!-- Si todo está OK -->
+<div *ngIf="mostrarRecomendaciones" class="recomendaciones-container">
+  <h2 class="titulo">Recomendaciones según el clima actual</h2>
+
+  <div class="tarjetas-grid">
+    <div class="tarjeta-producto" *ngFor="let producto of productos">
+      <img [src]="producto.urlImagen" class="producto-imagen" />
+      <h3 class="producto-nombre">{{ producto.nombre }}</h3>
+      <p>{{ producto.descripcion }}</p>
+      <p><strong>Clima:</strong> {{ clima }}</p>
+    </div>
+  </div>
+</div>
+

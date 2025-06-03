@@ -1,22 +1,26 @@
-<div *ngIf="estaLogueado; else noSesion" class="recomendaciones-container">
-  <h2 class="titulo">Prepárate para la semana 🌦️</h2>
-  <p class="text-gray-600 mb-4">
-    Se espera clima <strong>{{ climaPredicho }}</strong> en los próximos días.
-  </p>
+<ng-container *ngIf="estaLogueado && climaPredicho; else noSesion">
+  <div class="recomendaciones-container">
+    <h2 class="titulo">Prepárate para la semana 🌦️</h2>
+    <p class="text-gray-600 mb-4">
+      Se espera clima <strong>{{ climaPredicho }}</strong> en los próximos días.
+    </p>
 
-  <div class="tarjetas-grid">
-    <div class="tarjeta-producto" *ngFor="let producto of productos">
-      <img [src]="producto.urlImagen" alt="{{ producto.nombre }}" class="producto-imagen" />
+    <div class="tarjetas-grid">
+      <div class="tarjeta-producto" *ngFor="let producto of productos">
+        <img [src]="producto.urlImagen" alt="{{ producto.nombre }}" class="producto-imagen" />
 
-      <h3 class="producto-nombre">{{ producto.nombre }}</h3>
-      <p><strong>Categoría:</strong> {{ producto.categoria }}</p>
-      <p><strong>Género:</strong> {{ producto.generoDestino }}</p>
-      <p><strong>Material:</strong> {{ producto.material }}</p>
-      <p><strong>Clima:</strong> {{ producto.climaApropiado }}</p>
+        <h3 class="producto-nombre">{{ producto.nombre }}</h3>
+        <p><strong>Categoría:</strong> {{ producto.categoria }}</p>
+        <p><strong>Género:</strong> {{ producto.generoDestino }}</p>
+        <p><strong>Material:</strong> {{ producto.material }}</p>
+        <p><strong>Clima:</strong> {{ producto.climaApropiado }}</p>
+      </div>
     </div>
   </div>
-</div>
+</ng-container>
 
 <ng-template #noSesion>
-  <p class="text-center text-gray-500">Inicia sesión para ver el pronóstico de productos recomendados.</p>
+  <p class="text-center text-gray-500">
+    Inicia sesión para ver el pronóstico de productos recomendados.
+  </p>
 </ng-template>
