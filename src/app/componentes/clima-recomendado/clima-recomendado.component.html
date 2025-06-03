@@ -1,0 +1,26 @@
+<!-- Mostrar mensaje si no hay sesión -->
+<div *ngIf="!usuarioLogueado" class="text-center text-gray-600 mt-8">
+  Inicia sesión para ver tu asistente de vestimenta personalizado.
+</div>
+
+<!-- Mostrar asistente si hay sesión -->
+<div *ngIf="usuarioLogueado" class="asistente-container">
+  <h2 class="titulo">🧠 Tu asistente de vestimenta para la semana</h2>
+
+  <div class="grid">
+    <div class="card" *ngFor="let dia of recomendacion">
+      <p class="fecha">{{ dia.fecha | date:'EEEE, d MMMM':'':'es' }}</p>
+      <p class="clima">🌡️ {{ dia.temperatura }} °C – Clima {{ dia.clima }}</p>
+
+      <ng-container *ngIf="dia.producto; else sinProducto">
+        <img [src]="dia.producto.urlImagen" class="imagen" alt="prenda recomendada">
+        <p class="nombre">{{ dia.producto.nombre }}</p>
+        <p class="detalle">Ideal para el clima {{ dia.clima }}.</p>
+      </ng-container>
+
+      <ng-template #sinProducto>
+        <p class="detalle">Sin recomendación aún. Añadiremos más productos pronto 🛠️</p>
+      </ng-template>
+    </div>
+  </div>
+</div>

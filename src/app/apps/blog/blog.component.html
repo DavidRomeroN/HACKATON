@@ -1,0 +1,59 @@
+<!-- SECCIÓN HERO -->
+<div
+  class="static-slider-head"
+  style="background-image: url(assets/images/landingpage/fondobonito.png)"
+>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-9 col-md-6 align-self-center text-center no-trans">
+        <h1 class="title">INFOTEL PERÚ</h1>
+        <h5 class="subtitle op-5">
+          Conecta con la moda andina y encuentra la prenda perfecta para ti, estés donde estés. 🧶✨
+        </h5>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BLOQUE: Recomendaciones por clima (solo si logueado) -->
+<section *ngIf="usuarioLogueado" class="py-12 bg-white">
+  <div class="container mx-auto px-4">
+
+  </div>
+</section>
+
+<!-- BLOQUE: Pronóstico de la semana (solo si logueado) -->
+<section *ngIf="usuarioLogueado" class="py-12 bg-gray-50 border-t border-gray-200">
+  <div class="container mx-auto px-4">
+    <app-clima-pronostico></app-clima-pronostico>
+  </div>
+</section>
+
+<!-- BLOQUE: Asistente visual semanal (solo si logueado) -->
+<section *ngIf="usuarioLogueado" class="py-12 bg-gray-50 border-t border-gray-200">
+  <div class="container mx-auto px-4">
+    <app-asistente-semanal></app-asistente-semanal>
+  </div>
+</section>
+
+<!-- BLOQUE: Catálogo general (siempre visible) -->
+<section class="py-12 bg-white border-t border-gray-100">
+  <div class="container mx-auto px-4">
+    <app-catalogo-general></app-catalogo-general>
+  </div>
+</section>
+
+<a
+  href="https://t.me/PepitoBot_bot"
+  target="_blank"
+  class="boton-telegram-flotante"
+  title="Chatea con nuestro bot"
+>
+  <img src="https://img.icons8.com/color/48/telegram-app--v1.png" alt="Chatbot" />
+</a>
+
+
+<app-asesor-ia *ngIf="usuarioLogueado"></app-asesor-ia>
+
+
+

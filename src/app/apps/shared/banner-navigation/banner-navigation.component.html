@@ -1,0 +1,45 @@
+<div class="collapse navbar-collapse hover-dropdown font-14 ml-auto" id="h6-info">
+    <ul class="navbar-nav ml-auto  align-items-center">
+
+
+        <li class="nav-item" [routerLinkActive]="['active']">
+            <a class="nav-link" routerLink="/">
+                Home
+            </a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['active']">
+            <a class="nav-link" routerLink="/about">
+                About
+            </a>
+        </li>
+
+
+      <!-- Si SÍ hay usuario -->
+      <!-- Si NO hay usuario -->
+      <li class="nav-item" *ngIf="!usuario" [routerLinkActive]="['active']">
+        <a class="nav-link" routerLink="/login">Iniciar sesión</a>
+      </li>
+
+      <!-- Si hay usuario -->
+      <li class="nav-item dropdown" *ngIf="usuario">
+        <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          id="userDropdown"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          👤 {{ usuario.nombre || 'Usuario' }}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="userDropdown">
+          <a class="dropdown-item" (click)="cerrarSesion()" style="cursor: pointer;">Cerrar sesión</a>
+        </div>
+      </li>
+
+
+
+    </ul>
+
+</div>

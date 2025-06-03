@@ -1,0 +1,14 @@
+<form (ngSubmit)="registrar()" #formUsuario="ngForm">
+  <input type="text" name="nombre" [(ngModel)]="usuario.nombre" placeholder="Nombre" required />
+  <input type="email" name="correo" [(ngModel)]="usuario.correo" placeholder="Correo" required />
+  <input type="number" name="latitud" [(ngModel)]="usuario.latitud" placeholder="Latitud" />
+  <input type="number" name="longitud" [(ngModel)]="usuario.longitud" placeholder="Longitud" />
+  <input type="text" name="estiloPreferido" [(ngModel)]="usuario.estiloPreferido" placeholder="Estilo" />
+
+  <select name="genero" [(ngModel)]="usuario.genero">
+    <option value="masculino">Masculino</option>
+    <option value="femenino">Femenino</option>
+  </select>
+
+  <button type="submit">Registrar</button>
+</form>

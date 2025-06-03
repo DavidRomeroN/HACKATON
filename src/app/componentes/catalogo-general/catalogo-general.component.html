@@ -1,0 +1,15 @@
+<div class="recomendaciones-container">
+  <h2 class="titulo">🧺 Catálogo completo</h2>
+
+  <div class="tarjetas-grid">
+    <div class="tarjeta-producto" *ngFor="let producto of productos">
+      <img [src]="producto.urlImagen" [alt]="producto.nombre" class="producto-imagen" />
+
+      <h3 class="producto-nombre">{{ producto.nombre }}</h3>
+      <p><strong>Categoría:</strong> {{ producto.categoria }}</p>
+      <p><strong>Género:</strong> {{ producto.generoDestino }}</p>
+      <p><strong>Material:</strong> {{ producto.material }}</p>
+      <p><strong>Clima:</strong> {{ producto.climaApropiado }}</p>
+    </div>
+  </div>
+</div>

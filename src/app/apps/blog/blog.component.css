@@ -1,0 +1,15 @@
+.boton-telegram-flotante {
+  position: fixed;
+  bottom: 20px;
+  left: 20px; /* ⬅️ CAMBIADO de 'right' a 'left' */
+  z-index: 999;
+  background-color: white;
+  border-radius: 50%;
+  padding: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s;
+}
+
+.boton-telegram-flotante:hover {
+  transform: scale(1.1);
+}

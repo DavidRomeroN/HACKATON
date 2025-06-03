@@ -1,0 +1,14 @@
+<div class="container d-flex justify-content-center align-items-center" style="height: 80vh;">
+  <div class="card p-4 shadow" style="min-width: 350px;">
+    <h4 class="text-center mb-4">Iniciar Sesión</h4>
+
+    <form (ngSubmit)="login()">
+      <div class="form-group mb-3">
+        <label for="correo">Correo</label>
+        <input type="email" [(ngModel)]="correo" name="correo" id="correo" class="form-control" placeholder="ejemplo@correo.com" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100">Ingresar</button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+<div class="asesor-ia-container">
+  <h3>🧠 Asesor de Moda Andina</h3>
+  <div *ngIf="cargando">Cargando recomendación...</div>
+  <div *ngIf="!cargando && recomendacion">
+    <p>{{ recomendacion }}</p>
+  </div>
+</div>
